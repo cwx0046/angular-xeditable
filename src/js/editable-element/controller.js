@@ -233,6 +233,11 @@ angular.module('xeditable').factory('editableController',
           continue;
         }
 
+        // not add Class right now. I chage order here.
+        if (transferAttr === 'Class') {
+          continue;
+        }
+
         // convert back to lowercase style
         transferAttr = transferAttr.substring(0, 1).toLowerCase() + editableUtils.camelToDash(transferAttr.substring(1));  
 
@@ -245,6 +250,12 @@ angular.module('xeditable').factory('editableController',
       }
 
       self.inputEl.addClass('editable-input');
+
+      // now let's add eClass
+      if($attrs.eClass){
+        self.inputEl.addClass($attrs.eClass);
+      }
+
       self.inputEl.attr('ng-model', '$data');
 
       // add directiveName class to editor, e.g. `editable-text`
